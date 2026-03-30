@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDoアプリ</title>
+</head>
+<body>
+
+<h1>ToDoリスト</h1>
+
+<!-- 追加フォーム -->
+<form action="/add" method="post">
+  <input type="text" name="title" placeholder="やることを入力">
+  <button type="submit">追加</button>
+</form>
+
+<hr>
+
+<!-- ToDo一覧 -->
+<ul>
+  <li th:each="todo, stat : ${todos}">
+    
+    <!-- タイトル表示 -->
+    <span th:text="${todo.title}"></span>
+
+    <!-- 削除ボタン -->
+    <form action="/delete" method="post" style="display:inline;">
+      <input type="hidden" name="index" th:value="${stat.index}">
+      <button type="submit">削除</button>
+    </form>
+
+  </li>
+</ul>
+
+</body>
+</html>
